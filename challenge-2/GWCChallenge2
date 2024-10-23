@@ -1,0 +1,39 @@
+#include <iostream>
+#include <string>
+#include <map>
+using namespace std;
+
+int main() {
+    
+    map<char, int> romanNums = {{'I', 1}, {'V', 5}, {'X', 10}, {'X', 10}, {'L', 50}, {'C', 100}, {'D', 500}, {'M', 1000}};
+    string romanNum;
+    
+
+    while(true){
+        
+        cout << "Enter Roman Numeral (Type '#' to exit): ";
+        cin >> romanNum;
+        
+        if (romanNum == "#") {
+                    break;
+                }
+        int integer = 0;
+        for (int i = 0; i < romanNum.size(); i++) {
+            int num = romanNums[romanNum[i]];
+            if (i < romanNum.size() - 1) {
+                int next = romanNums[romanNum[i + 1]];
+                if (num < next) {
+                    integer -= num;
+                } else {
+                    integer += num;
+                }
+            } else {
+                integer += num;
+            }
+        }
+        
+        cout << "The integer value is: " << integer << endl;
+    }
+    return 0;
+}
+
